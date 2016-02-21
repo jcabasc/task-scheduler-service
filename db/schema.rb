@@ -11,7 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221203048) do
+ActiveRecord::Schema.define(version: 20160221223248) do
+
+  create_table "servers", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "servers_tasks", force: :cascade do |t|
+    t.integer "server_id", limit: 4
+    t.integer "task_id",   limit: 4
+  end
+
+  add_index "servers_tasks", ["server_id"], name: "index_servers_tasks_on_server_id", using: :btree
+  add_index "servers_tasks", ["task_id"], name: "index_servers_tasks_on_task_id", using: :btree
+
+  create_table "tasks", force: :cascade do |t|
+    t.string   "name",            limit: 255
+    t.string   "executable_path", limit: 255
+    t.datetime "started_at"
+    t.datetime "ended_at"
+    t.text     "days_of_week",    limit: 65535
+    t.string   "status",          limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                limit: 255, default: "", null: false
@@ -24,4 +49,6 @@ ActiveRecord::Schema.define(version: 20160221203048) do
   add_index "users", ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "servers_tasks", "servers"
+  add_foreign_key "servers_tasks", "tasks"
 end
