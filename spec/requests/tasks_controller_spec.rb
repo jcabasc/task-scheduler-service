@@ -71,7 +71,7 @@ describe Api::V1::TasksController do
     end
   end
 
-    describe "#ndex" do
+    describe "#index" do
       let(:json_response) { JSON.parse response.body }
       let(:user) { Fabricate(:user) }
       let(:params) { {auth_token: user.authentication_token} }
