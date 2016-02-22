@@ -20,12 +20,6 @@ RSpec.describe Task, type: :model do
           its(:valid?) { should eq false }
           its("errors.full_messages.first") { should eq "Start date can't be greater than Finish date" }
         end
-
-        context "started_at < current time" do
-          let(:task_params) { { name: 'rspec', executable_path: '~/srv/.rspec', days_of_week: 'mon', started_at: Time.now - 2.hours, ended_at: Time.now + 1.hours } }
-          its(:valid?) { should eq false }
-          its("errors.full_messages.first") { should eq "Start date can't be less than current date" }
-        end
       end
     end
 

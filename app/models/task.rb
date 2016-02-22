@@ -13,9 +13,6 @@ class Task < ActiveRecord::Base
     if self.started_at > self.ended_at
       self.errors[:base] <<  "Start date can't be greater than Finish date"
     end
-    if self.started_at < Time.now.getutc && self.new_record?
-      self.errors[:base] << "Start date can't be less than current date"
-    end
   end
 
   def valid_days

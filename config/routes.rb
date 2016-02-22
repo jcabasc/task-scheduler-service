@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :tasks
       resources :users, only: :show
       resources :servers, only: [:show, :index]
+      resources :logs, only: :index
     end
   end
 end
