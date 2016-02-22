@@ -3,6 +3,8 @@ class Task < ActiveRecord::Base
   validate :validate_dates
   validate :valid_days
   validates :name, :days_of_week, :executable_path, :started_at, :ended_at, presence: true
+  accepts_nested_attributes_for :servers,  allow_destroy: true
+
 
   VALID_DAYS = %w(mon tue wed thu fri sat sun)
 

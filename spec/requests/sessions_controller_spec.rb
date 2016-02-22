@@ -13,7 +13,7 @@ describe Api::V1::SessionsController do
         post "/api/v1/users/sign_in", params
         expect(response).to be_success
         expect(response.status).to eq(200)
-        expect(json_response["auth_token"] ).to eq(user.authentication_token)
+        expect(json_response["resource"]["user"]["authentication_token"]).to eq(user.authentication_token)
       end
     end
 

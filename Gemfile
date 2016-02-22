@@ -11,6 +11,7 @@ gem "devise-i18n", '~> 0.12.1'
 
 group :development, :test do
   gem 'byebug'
+  gem 'faker'
 end
 
 group :development do
@@ -20,7 +21,6 @@ end
 
 group :test do
   gem 'fabrication'
-  gem 'faker'
   gem 'simplecov', require: false
   gem 'factory_girl_rails'
   gem 'rspec', '3.3.0'

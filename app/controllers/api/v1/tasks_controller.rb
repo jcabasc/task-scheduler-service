@@ -1,7 +1,7 @@
 module Api
   module V1
     class TasksController < BaseController
-      before_filter :authorized?
+      skip_before_filter :authorized?
 
       def index
         respond_with tasks
@@ -37,14 +37,14 @@ module Api
 
       def save(task)
          if task.save
-            render json: { success: true, message: "The task was saved!", body: task }, status: 200
+            render json: { success: true, message: "The task was saved!", resource: task }, status: 200
           else
-            render json: { success: false, message: task.errors.full_messages.first, body: task }, status: 400
+            render json: { success: false, message: task.errors.full_messages.first, resource: task }, status: 400
           end
       end
 
       def task_params
-        params.require(:task).permit(:name, :executable_path, :days_of_week, :started_at, :ended_at, server_ids: [])
+        params.require(:task).permit(:name, :executable_path, :days_of_week, :started_at, :ended_at, :status, server_ids: [])
       end
     end
   end

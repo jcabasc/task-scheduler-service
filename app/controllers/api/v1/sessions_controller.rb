@@ -11,7 +11,7 @@ module Api
         if login.authenticated?
           user = login.user
           user.save
-          render json: { success: true, auth_token: user.authentication_token }
+          render json: { success: true, resource: UserSerializer.new(user) }, status: 200
         else
           render json: { success: false, error: login.error }, status: 401
         end
