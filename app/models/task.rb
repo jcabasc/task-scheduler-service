@@ -2,7 +2,7 @@ class Task < ActiveRecord::Base
   has_and_belongs_to_many :servers
   validate :validate_dates
   validate :valid_days
-  validates :name, :days_of_week, :executable_path, presence: true
+  validates :name, :days_of_week, :executable_path, :started_at, :ended_at, presence: true
 
   VALID_DAYS = %w(mon tue wed thu fri sat sun)
 
